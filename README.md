@@ -128,4 +128,11 @@ flutter run
 - ✅ Três telas funcionais
 - ✅ Persistência local com SQLite
 
+## 📸 Screenshots
+
+<div align="center">
+  <img src="assets/images/images_app/image_app_1.png" width="250" />
+  <img src="assets/images/images_app/image_app_2.png" width="250" />
+  <img src="assets/images/images_app/image_app_3.png" width="250" />
+</div>
 
