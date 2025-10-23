@@ -25,11 +25,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       if (results.isNotEmpty) {
         return UserModel.fromJson(results[0] as Map<String, dynamic>);
       } else {
-        throw Exception('No user data returned from API');
+        throw Exception('Nenhum dado do usuário foi retornado da API');
       }
     } else {
-      throw Exception('Failed to fetch user: ${response.statusCode}');
+      throw Exception('Falha ao buscar usuário: ${response.statusCode}');
     }
   }
 }
-

@@ -8,10 +8,8 @@ class SavedUsersCubit extends Cubit<SavedUsersState> {
   final GetSavedUsers getSavedUsers;
   final DeleteUser deleteUser;
 
-  SavedUsersCubit({
-    required this.getSavedUsers,
-    required this.deleteUser,
-  }) : super(SavedUsersInitial());
+  SavedUsersCubit({required this.getSavedUsers, required this.deleteUser})
+    : super(SavedUsersInitial());
 
   Future<void> loadSavedUsers() async {
     emit(SavedUsersLoading());
@@ -26,10 +24,9 @@ class SavedUsersCubit extends Cubit<SavedUsersState> {
   Future<void> deleteUserById(String uuid) async {
     try {
       await deleteUser(DeleteUserParams(uuid: uuid));
-      await loadSavedUsers(); // Reload the list
+      await loadSavedUsers(); // Reload da lista
     } catch (e) {
       emit(SavedUsersError(message: e.toString()));
     }
   }
 }
-

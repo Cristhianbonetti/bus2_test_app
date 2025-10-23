@@ -10,15 +10,13 @@ class UserListCubit extends Cubit<UserListState> {
   Duration _elapsed = Duration.zero;
   static const Duration _tickInterval = Duration(seconds: 5);
 
-  UserListCubit({
-    required this.getRandomUser,
-  }) : super(UserListInitial());
+  UserListCubit({required this.getRandomUser}) : super(UserListInitial());
 
   void startTicker() {
     if (_ticker != null && _ticker!.isActive) return;
 
     emit(const UserListLoaded(users: [], isTickerActive: true));
-    
+
     _ticker = Ticker((elapsed) {
       if (elapsed - _elapsed >= _tickInterval) {
         _elapsed = elapsed;
@@ -27,7 +25,6 @@ class UserListCubit extends Cubit<UserListState> {
     });
 
     _ticker!.start();
-    // Fetch the first user immediately
     fetchRandomUser();
   }
 
@@ -36,7 +33,7 @@ class UserListCubit extends Cubit<UserListState> {
     _ticker?.dispose();
     _ticker = null;
     _elapsed = Duration.zero;
-    
+
     if (state is UserListLoaded) {
       final currentState = state as UserListLoaded;
       emit(currentState.copyWith(isTickerActive: false));
@@ -46,7 +43,7 @@ class UserListCubit extends Cubit<UserListState> {
   Future<void> fetchRandomUser() async {
     try {
       final user = await getRandomUser(NoParams());
-      
+
       if (state is UserListLoaded) {
         final currentState = state as UserListLoaded;
         final updatedUsers = [...currentState.users, user];
@@ -56,7 +53,6 @@ class UserListCubit extends Cubit<UserListState> {
       }
     } catch (e) {
       if (state is UserListLoaded) {
-        // Don't change state on error if we already have users
       } else {
         emit(UserListError(message: e.toString()));
       }
@@ -69,4 +65,3 @@ class UserListCubit extends Cubit<UserListState> {
     return super.close();
   }
 }
-

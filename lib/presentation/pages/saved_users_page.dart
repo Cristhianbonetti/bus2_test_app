@@ -29,9 +29,7 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
       body: BlocBuilder<SavedUsersCubit, SavedUsersState>(
         builder: (context, state) {
           if (state is SavedUsersInitial || state is SavedUsersLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (state is SavedUsersError) {
@@ -77,16 +75,16 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
                     const SizedBox(height: 16),
                     Text(
                       'Nenhum usuário salvo',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.grey[600],
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge?.copyWith(color: Colors.grey[600]),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Salve usuários da tela inicial para vê-los aqui',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey[500],
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.grey[500]),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -101,10 +99,7 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
                   color: Colors.blue[50],
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.info_outline,
-                        color: Colors.blue[700],
-                      ),
+                      Icon(Icons.info_outline, color: Colors.blue[700]),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -133,10 +128,10 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => UserDetailPage(user: user),
+                                builder: (context) =>
+                                    UserDetailPage(user: user),
                               ),
                             );
-                            // Reload the list when returning from detail page
                             if (context.mounted) {
                               context.read<SavedUsersCubit>().loadSavedUsers();
                             }
@@ -164,7 +159,9 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: const Text('Confirmar Exclusão'),
-        content: const Text('Deseja realmente remover este usuário dos salvos?'),
+        content: const Text(
+          'Deseja realmente remover este usuário dos salvos?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
@@ -175,14 +172,10 @@ class _SavedUsersPageState extends State<SavedUsersPage> {
               context.read<SavedUsersCubit>().deleteUserById(uuid);
               Navigator.pop(dialogContext);
             },
-            child: const Text(
-              'Remover',
-              style: TextStyle(color: Colors.red),
-            ),
+            child: const Text('Remover', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
   }
 }
-
