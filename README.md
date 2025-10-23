@@ -65,9 +65,9 @@ lib/
 ## 🎨 Padrões Implementados
 
 ### Clean Architecture
-- **Domain Layer**: Entidades e regras de negócio puras
-- **Data Layer**: Implementação de datasources e repositories
-- **Presentation Layer**: UI e gerenciamento de estado
+- **Domain**: Entidades e regras de negócio puras
+- **Data**: Implementação de datasources e repositories
+- **Presentation**: UI e gerenciamento de estado
 
 ### MVVM (Model-View-ViewModel)
 - **Model**: Entities e Models
@@ -84,25 +84,10 @@ lib/
 - Provider para disponibilizar no contexto
 - Facilita testes e manutenção
 
-## 📦 Estrutura de Dados
-
-A aplicação parseia o JSON da API para as seguintes estruturas:
-
-- **UserEntity**: Entidade principal
-  - UserName: Título, primeiro e último nome
-  - UserLocation: Endereço completo com coordenadas
-  - UserLogin: Credenciais e identificadores
-  - UserDob: Data de nascimento e idade
-  - UserRegistered: Data de registro
-  - UserPicture: Fotos (large, medium, thumbnail)
-  - UserID: Identificação nacional
 
 ## 🚀 Como Executar
 
 1. Certifique-se de ter o Flutter instalado:
-```bash
-flutter --version
-```
 
 2. Instale as dependências:
 ```bash
@@ -116,10 +101,6 @@ flutter run
 
 ## 📝 Características Técnicas Importantes
 
-### Ticker vs Timer
-- ✅ Usa **Ticker** (TickerProvider) conforme requisito
-- Mais eficiente para animações e atualizações periódicas
-- Pausa automaticamente quando app está em background
 
 ### Persistência SQLite
 - Banco de dados local com sqflite
@@ -131,11 +112,6 @@ flutter run
 - Estados de erro nos Cubits
 - Feedback visual ao usuário
 
-### Orientação a Objetos
-- Classes bem definidas e encapsuladas
-- Herança (Models extends Entities)
-- Interfaces (Abstract classes)
-- Composição de objetos
 
 ## 🎯 Requisitos Atendidos
 
@@ -152,6 +128,4 @@ flutter run
 - ✅ Três telas funcionais
 - ✅ Persistência local com SQLite
 
-## 📄 Licença
 
-Este projeto foi desenvolvido para fins de teste técnico.
